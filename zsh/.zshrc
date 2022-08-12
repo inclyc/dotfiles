@@ -108,6 +108,7 @@ alias fgrep='fgrep --color=auto'
 alias top='htop'
 
 abbrev-alias seaw='sudo emerge -auDN @world'
+abbrev-alias sea='sudo emerge -auDN'
 abbrev-alias smc='sudo -u mc -g mc'
 
 # Tmux abbreviations
