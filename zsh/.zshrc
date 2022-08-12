@@ -110,6 +110,16 @@ alias top='htop'
 abbrev-alias seaw='sudo emerge -auDN @world'
 abbrev-alias smc='sudo -u mc -g mc'
 
+# Tmux abbreviations
+abbrev-alias ta='tmux attach -t'
+abbrev-alias th='tmux new-session -s home || tmux attach -t home'
+abbrev-alias tad='tmux attach -d -t'
+abbrev-alias ts='tmux new-session -s'
+abbrev-alias tl='tmux list-sessions'
+abbrev-alias tksv='tmux kill-server'
+abbrev-alias tkss='tmux kill-session -t'
+abbrev-alias tmuxconf='$EDITOR $ZSH_TMUX_CONFIG'
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
