@@ -1,0 +1,9 @@
+export XIM_PROGRAM=fcitx
+export XIM=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+export PATH="$PATH:$HOME/.local/bin"
+export MANPATH="$MANPATH:/usr/local/texlive/2022/texmf-dist/doc/man"
+export INFOPATH="$INFOPATH:/usr/local/texlive/2022/texmf-dist/doc/info"
+export PATH="$PATH:/usr/local/texlive/2022/bin/x86_64-linux"
