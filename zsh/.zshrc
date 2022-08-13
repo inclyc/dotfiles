@@ -1,3 +1,38 @@
+# Check whether or not we can attach to a tmux session
+# should not attach tmux session if we are in these following cases:
+# 1. no tmux executable
+# 2. $PS1 is undefined 
+# 3. nested daemon environment
+#	eliminate self loops since tmux then source this file (i.e. zshrc)
+# 4. vscode environment
+#	vscode built-in termianl is very small, which is not suitable for this
+function _tmux_check_available() {
+	command -v tmux &> /dev/null \
+	&& [ -n "$PS1" ] \
+	&& [[ ! "$TERM" =~ screen ]] \
+	&& [[ ! "$TERM" =~ tmux ]] \
+	&& [ -z "$TMUX" ] \
+	&& [ "$TERM_PROGRAM" != "vscode" ] \
+	&& true || false
+}
+
+# Check if tmux session given by $1 already exists.
+# If true, attach to it, otherwise create and attach to a new session 
+function _tmux_new_or_attach() {
+	tmux_session=$1
+	if command tmux has-session -t $tmux_session; then
+		command tmux attach -t $tmux_session
+	else
+		command tmux new -s $tmux_session
+	fi
+}
+
+# Attach tmux if we are in $HOME, typically Ctrl + Shift + T
+# It is not a good idea to run many windows which it's own shell process
+if [ $PWD = $HOME ] && _tmux_check_available; then
+	_tmux_new_or_attach 'home'
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
