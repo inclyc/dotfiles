@@ -122,5 +122,43 @@ abbrev-alias tkss='tmux kill-session -t'
 abbrev-alias tmuxconf='$EDITOR $ZSH_TMUX_CONFIG'
 
 
+# Arcanist abbreviations
+# Adopted from https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/arcanist/arcanist.plugin.zsh (MIT License)
+abbrev-alias ara='arc amend'
+abbrev-alias arb='arc branch'
+abbrev-alias arbl='arc bland'
+abbrev-alias arco='arc cover'
+abbrev-alias arci='arc commit'
+
+abbrev-alias ard='arc diff'
+abbrev-alias ardc='arc diff --create'
+abbrev-alias ardnu='arc diff --nounit'
+abbrev-alias ardnupc='arc diff --nounit --plan-changes'
+abbrev-alias ardpc='arc diff --plan-changes'
+abbrev-alias ardp='arc diff --preview' # creates a new diff in the phab interface
+
+abbrev-alias are='arc export'
+abbrev-alias arh='arc help'
+abbrev-alias arho='arc hotfix'
+abbrev-alias arl='arc land'
+abbrev-alias arli='arc lint'
+abbrev-alias arls='arc list'
+
+#
+# Functions
+# (sorted alphabetically)
+#
+
+ardu() {
+  # Both `ardu https://arcanist-url.com/<REVISION>`, and `ardu <REVISION>` work.
+  arc diff --update "${1:t}"
+}
+
+arpa() {
+  # Both `arpa https://arcanist-url.com/<REVISION>`, and `arpa <REVISION>` work.
+  arc patch "${1:t}"
+}
+
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
