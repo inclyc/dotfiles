@@ -8,11 +8,11 @@
 #	vscode built-in termianl is very small, which is not suitable for this
 function _tmux_check_available() {
 	command -v tmux &> /dev/null \
-	&& [ -n "$PS1" ] \
+	&& [[ -n "$PS1" ]] \
 	&& [[ ! "$TERM" =~ screen ]] \
 	&& [[ ! "$TERM" =~ tmux ]] \
-	&& [ -z "$TMUX" ] \
-	&& [ "$TERM_PROGRAM" != "vscode" ] \
+	&& [[ -z "$TMUX" ]] \
+	&& [[ "$TERM_PROGRAM" != "vscode" ]] \
 	&& true || false
 }
 
@@ -27,11 +27,11 @@ function _tmux_new_or_attach() {
 	fi
 }
 
-if [ ! -z "${SSH_TTY}" ] && _tmux_check_available; then
+if [[ ! -z "${SSH_TTY}" ]] && _tmux_check_available; then
 	# Attach to "ssh" session if connected from Secure Shell (SSH).
 	# TMUX session manager will preserve our work if ssh connection lost.
 	_tmux_new_or_attach 'ssh'
-elif [ $PWD = $HOME ] && _tmux_check_available; then
+elif [[ $PWD = $HOME ]] && _tmux_check_available; then
 	# Attach tmux if we are in $HOME, typically Ctrl + Shift + T
 	# It is not a good idea to run many windows which it's own shell process
 	_tmux_new_or_attach 'home'
