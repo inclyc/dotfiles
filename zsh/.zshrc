@@ -33,6 +33,12 @@ if [ $PWD = $HOME ] && _tmux_check_available; then
 	_tmux_new_or_attach 'home'
 fi
 
+# Attach to "ssh" session if connected from Secure Shell (SSH).
+# TMUX session manager will preserve our work if ssh connection lost.
+if [ ! -z "${SSH_TTY}" ] && _tmux_check_available; then
+	_tmux_new_or_attach 'ssh'
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
