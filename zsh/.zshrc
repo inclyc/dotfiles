@@ -27,17 +27,16 @@ function _tmux_new_or_attach() {
 	fi
 }
 
-# Attach tmux if we are in $HOME, typically Ctrl + Shift + T
-# It is not a good idea to run many windows which it's own shell process
-if [ $PWD = $HOME ] && _tmux_check_available; then
+if [ ! -z "${SSH_TTY}" ] && _tmux_check_available; then
+	# Attach to "ssh" session if connected from Secure Shell (SSH).
+	# TMUX session manager will preserve our work if ssh connection lost.
+	_tmux_new_or_attach 'ssh'
+elif [ $PWD = $HOME ] && _tmux_check_available; then
+	# Attach tmux if we are in $HOME, typically Ctrl + Shift + T
+	# It is not a good idea to run many windows which it's own shell process
 	_tmux_new_or_attach 'home'
 fi
 
-# Attach to "ssh" session if connected from Secure Shell (SSH).
-# TMUX session manager will preserve our work if ssh connection lost.
-if [ ! -z "${SSH_TTY}" ] && _tmux_check_available; then
-	_tmux_new_or_attach 'ssh'
-fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
