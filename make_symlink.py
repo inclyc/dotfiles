@@ -20,7 +20,7 @@ def find_target(s) -> Optional[str]:
     if s in registry:
         return registry[s]
     if re.match(r'(.*)bash', s) is not None \
-            or re.match(r'(.*)zsh', s) is not None:
+            or s in {".zshrc", ".zprofile"}:
         # These files just need a $HOME prefix
         return "{}/{}".format(os.environ['HOME'], s)
     return None
