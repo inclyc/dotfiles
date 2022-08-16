@@ -52,6 +52,7 @@ SAVEHIST=10000
 setopt inc_append_history autocd nomatch notify share_history extended_history
 
 setopt correct
+setopt autocd
 
 # Enable zsh completion
 autoload -U compinit promptinit
