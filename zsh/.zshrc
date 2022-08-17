@@ -54,6 +54,8 @@ setopt inc_append_history autocd nomatch notify share_history extended_history
 setopt correct
 setopt autocd
 
+bindkey -v '^?' backward-delete-char
+
 # Enable zsh completion
 autoload -U compinit promptinit
 compinit
