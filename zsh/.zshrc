@@ -1,7 +1,7 @@
 # Check whether or not we can attach to a tmux session
 # should not attach tmux session if we are in these following cases:
 # 1. no tmux executable
-# 2. $PS1 is undefined 
+# 2. $PS1 is undefined
 # 3. nested daemon environment
 #	eliminate self loops since tmux then source this file (i.e. zshrc)
 # 4. vscode environment
@@ -17,7 +17,7 @@ function _tmux_check_available() {
 }
 
 # Check if tmux session given by $1 already exists.
-# If true, attach to it, otherwise create and attach to a new session 
+# If true, attach to it, otherwise create and attach to a new session
 function _tmux_new_or_attach() {
 	tmux_session=$1
 	if command tmux has-session -t $tmux_session; then
@@ -49,10 +49,13 @@ fi
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt inc_append_history autocd nomatch notify share_history extended_history
+setopt inc_append_history share_history extended_history
 
+# Documentation about opt: https://zsh.sourceforge.io/Doc/Release/Options.html
 setopt correct
 setopt autocd
+setopt nomatch
+setopt notify
 
 bindkey -v '^?' backward-delete-char
 
