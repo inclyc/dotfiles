@@ -114,7 +114,6 @@ fi
 
 # Use `jk` to escape insert mode
 bindkey -M viins 'jk' vi-cmd-mode
-bindkey -M viins 'jj' vi-cmd-mode
 
 
 # Package manager
