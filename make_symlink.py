@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-from argparse import ArgumentParser
-from asyncio.log import logger
-from genericpath import isdir, isfile
-from typing import Optional
 import logging
 import os
 import re
+from argparse import ArgumentParser
+from typing import Optional
+
+from genericpath import isdir, isfile
 
 registry = {
     # TMUX could choose .tmux.conf and ~/.config/tmux/tmux.conf
@@ -71,7 +71,7 @@ def make_link(name: str, path: str):
 def check_ignore(path):
     for p in ignore_pattern:
         if re.match(p, path) is not None:
-            logger.info(
+            logging.info(
                 "Path {} was ignored by pattern {}.\n".format(path, p))
             return False
 
