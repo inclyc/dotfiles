@@ -58,6 +58,7 @@ setopt correct
 setopt autocd
 setopt nomatch
 setopt notify
+setopt nobeep
 
 bindkey -v '^?' backward-delete-char
 
