@@ -10,7 +10,7 @@ they should be placed, and then create symlinks for each file.
 
 The following table lists the mapping rules for files managed by this script.
 
-<center>
+<div align="center">
 
 | File Type | Rule|
 | :-----:   | :--:|
@@ -18,4 +18,4 @@ The following table lists the mapping rules for files managed by this script.
 | bash      | $HOME/%s|
 | .tmux.conf | $HOME/.config/tmux/tmux.conf |
 
-</center>
+</div>
