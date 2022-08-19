@@ -6,7 +6,6 @@
 #	eliminate self loops since tmux then source this file (i.e. zshrc)
 # 4. vscode environment
 #	vscode built-in termianl is very small, which is not suitable for this
-# 5. we are not in linux TYY shell
 function _tmux_check_available() {
 	command -v tmux &> /dev/null \
 	&& [[ -n "$PS1" ]] \
@@ -14,7 +13,6 @@ function _tmux_check_available() {
 	&& [[ ! "$TERM" =~ tmux ]] \
 	&& [[ -z "$TMUX" ]] \
 	&& [[ "$TERM_PROGRAM" != "vscode" ]] \
-	&& [[ $TERM != "linux" ]] \
 	&& true || false
 }
 
