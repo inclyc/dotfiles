@@ -15,7 +15,6 @@ The following table lists the mapping rules for files managed by this script.
 | File Type | Rule|
 | :-----:   | :--:|
 | zsh       | $HOME/%s|
-| bash      | $HOME/%s|
 | .tmux.conf | $HOME/.config/tmux/tmux.conf |
 
 </div>
