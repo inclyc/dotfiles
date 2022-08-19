@@ -144,8 +144,8 @@ zle -N down-line-or-beginning-search
 [[ -n "${key[Up]}"   ]] && bindkey -- "${key[Up]}"   up-line-or-beginning-search
 [[ -n "${key[Down]}" ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
 
-
-alias ll='ls -l --color=auto'
+alias ls='ls --color=auto'
+alias ll='ls -l'
 alias vim='nvim'
 alias vi='nvim'
 alias grep='grep --color=auto'
