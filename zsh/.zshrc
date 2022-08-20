@@ -121,6 +121,7 @@ bindkey -M viins 'jk' vi-cmd-mode
 
 
 # Package manager
+export ADOTDIR=${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/antigen
 source ${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/antigen.zsh
 
 # Official plugins
