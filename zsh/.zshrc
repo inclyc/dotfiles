@@ -1,3 +1,8 @@
+local local_rc=${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/rc.zsh
+if [[ -f $local_rc ]]; then
+    source $local_rc
+fi
+
 # Check whether or not we can attach to a tmux session
 # should not attach tmux session if we are in these following cases:
 # 1. no tmux executable
