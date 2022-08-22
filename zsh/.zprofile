@@ -7,5 +7,3 @@ fi
 
 # User specific binraies, push it at the top
 path=("$HOME/.local/bin" $path)
-
-
