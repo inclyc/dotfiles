@@ -19,7 +19,13 @@ The following table lists the mapping rules for files managed by this script.
 
 </div>
 
+# Features
+
+1. Cross platform
+2. Machine-spec local configurations
+3. Fast startup (no oh-my-zsh)
 
 # Note
 
-Recommended zsh version >= 5.9
+1. Recommended `zsh` version >= 5.9
+2. Default keymaps for **VIM** users, and you can use `jk` to substitute `ESC`
