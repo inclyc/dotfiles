@@ -147,13 +147,13 @@ zle -N down-line-or-beginning-search
 
 alias ls='ls --color=auto'
 alias ll='ls -l'
-alias vim='nvim'
-alias vi='nvim'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias ip='ip --color'
 
+abbrev-alias vim='nvim'
+abbrev-alias vi='nvim'
 abbrev-alias top='htop'
 abbrev-alias seaw='sudo emerge -auDN @world'
 abbrev-alias seac='sudo emerge -ac'
