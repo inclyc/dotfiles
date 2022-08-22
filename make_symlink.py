@@ -47,7 +47,7 @@ def make_link(name: str, path: str):
         def handle_exist():
             if force_generate:
                 logging.warning(
-                    "Target path {} already exists, delete it and relink")
+                    "Target path {} already exists, delete it and relink".format(target))
                 os.remove(target)
                 link(depth + 1)  # Try again
             else:
