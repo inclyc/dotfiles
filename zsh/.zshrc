@@ -1,5 +1,5 @@
 local local_rc=${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/rc.zsh
-if [[ -f $local_rc ]]; then
+if [[ -r $local_rc ]]; then
     source $local_rc
 fi
 
