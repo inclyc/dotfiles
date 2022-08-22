@@ -18,3 +18,8 @@ The following table lists the mapping rules for files managed by this script.
 | .tmux.conf | $HOME/.config/tmux/tmux.conf |
 
 </div>
+
+
+# Note
+
+Recommended zsh version >= 5.9
