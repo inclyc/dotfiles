@@ -1,7 +1,6 @@
 # Login shell profile not shared between different platforms
-local local_profile=${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/profile.zsh
-if [[ -r $local_profile ]]; then
-    source $local_profile
+if [[ -r "${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/profile.zsh" ]]; then
+    source "${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/profile.zsh"
 fi
 
 

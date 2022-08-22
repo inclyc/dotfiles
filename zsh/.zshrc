@@ -1,6 +1,5 @@
-local local_rc=${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/rc.zsh
-if [[ -r $local_rc ]]; then
-    source $local_rc
+if [[ -r "${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/rc.zsh" ]]; then
+    source "${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/rc.zsh"
 fi
 
 # Check whether or not we can attach to a tmux session
