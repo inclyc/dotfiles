@@ -41,6 +41,8 @@ elif [[ $PWD = $HOME ]] && _tmux_check_available; then
 	_tmux_new_or_attach 'home'
 fi
 
+export GPG_TTY=$(tty)
+
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -211,8 +213,6 @@ arpa() {
   # Both `arpa https://arcanist-url.com/<REVISION>`, and `arpa <REVISION>` work.
   arc patch "${1:t}"
 }
-
-export GPG_TTY=$(tty)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
