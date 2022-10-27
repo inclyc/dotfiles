@@ -161,43 +161,6 @@ alias ip='ip --color=auto'
 abbrev-alias vim='nvim'
 abbrev-alias vi='nvim'
 abbrev-alias top='htop'
-abbrev-alias seaw='sudo emerge -auDN @world'
-abbrev-alias seac='sudo emerge -ac'
-abbrev-alias sea='sudo emerge -auDN'
-abbrev-alias smc='sudo -u mc -g mc'
-
-# Tmux abbreviations
-abbrev-alias ta='tmux attach -t'
-abbrev-alias th='tmux new-session -s home || tmux attach -t home'
-abbrev-alias tad='tmux attach -d -t'
-abbrev-alias ts='tmux new-session -s'
-abbrev-alias tl='tmux list-sessions'
-abbrev-alias tksv='tmux kill-server'
-abbrev-alias tkss='tmux kill-session -t'
-abbrev-alias tmuxconf='$EDITOR $ZSH_TMUX_CONFIG'
-
-
-# Arcanist abbreviations
-# Adopted from https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/arcanist/arcanist.plugin.zsh (MIT License)
-abbrev-alias ara='arc amend'
-abbrev-alias arb='arc branch'
-abbrev-alias arbl='arc bland'
-abbrev-alias arco='arc cover'
-abbrev-alias arci='arc commit'
-
-abbrev-alias ard='arc diff'
-abbrev-alias ardc='arc diff --create'
-abbrev-alias ardnu='arc diff --nounit'
-abbrev-alias ardnupc='arc diff --nounit --plan-changes'
-abbrev-alias ardpc='arc diff --plan-changes'
-abbrev-alias ardp='arc diff --preview' # creates a new diff in the phab interface
-
-abbrev-alias are='arc export'
-abbrev-alias arh='arc help'
-abbrev-alias arho='arc hotfix'
-abbrev-alias arl='arc land'
-abbrev-alias arli='arc lint'
-abbrev-alias arls='arc list'
 
 #
 # Functions
