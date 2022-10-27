@@ -65,6 +65,7 @@ setopt notify
 setopt nobeep
 
 bindkey -v '^?' backward-delete-char
+bindkey '^R' history-incremental-search-backward
 
 # Enable zsh completion
 autoload -U compinit promptinit
