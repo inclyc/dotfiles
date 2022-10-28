@@ -163,21 +163,6 @@ abbrev-alias vim='nvim'
 abbrev-alias vi='nvim'
 abbrev-alias top='htop'
 
-#
-# Functions
-# (sorted alphabetically)
-#
-
-ardu() {
-  # Both `ardu https://arcanist-url.com/<REVISION>`, and `ardu <REVISION>` work.
-  arc diff --update "${1:t}"
-}
-
-arpa() {
-  # Both `arpa https://arcanist-url.com/<REVISION>`, and `arpa <REVISION>` work.
-  arc patch "${1:t}"
-}
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
