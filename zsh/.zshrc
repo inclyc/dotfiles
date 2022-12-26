@@ -52,7 +52,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Preserve history
-HISTFILE=~/.zsh_history
+HISTFILE=${ZDOTDIR:-"-"}/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt inc_append_history share_history extended_history
@@ -163,8 +163,8 @@ abbrev-alias vim='nvim'
 abbrev-alias vi='nvim'
 abbrev-alias top='htop'
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
+[[ ! -f ${ZDOTDIR:-"~"}/.p10k.zsh ]] || source ${ZDOTDIR:-"~"}/.p10k.zsh
 
 if [[ -r "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/after/rc.zsh" ]]; then
     source "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/after/rc.zsh"
