@@ -27,10 +27,9 @@ def find_target(s) -> Optional[str]:
 
 
 ignore_pattern = [r'(.*)\.git']
-force_generate = False
 
 
-def make_link(name: str, path: str):
+def make_link(name: str, path: str, force):
     _target = find_target(name)
     if _target is None:
         logging.info(f"Ignoring file: {path}, name: {name}")
@@ -39,33 +38,19 @@ def make_link(name: str, path: str):
     logging.info(f"Linking {path} => {target}")
     path = os.path.abspath(path)
 
-    def link(depth):
-        if depth >= 3:
-            logging.error(f"Failed to link target {target}")
-            return
+    if not os.path.exists(os.path.dirname(target)):
+        os.makedirs(os.path.dirname(target))
 
-        def handle_exist():
-            if force_generate:
-                logging.warning(
-                    f"Target path {target} already exists, delete it and relink")
-                os.remove(target)
-                link(depth + 1)  # Try again
-            else:
-                logging.warning(
-                    f"Target path {target} already exists, skipped, use -f to force generate")
+    if os.path.exists(target):
+        if force:
+            logging.warning(f"Path {target} already exists, delete it.")
+            os.remove(target)
+        else:
+            logging.warning(f"Path {target} already exists, skipped.")
+            logging.warning("use -f to force generate")
 
-        if os.path.exists(target):
-            handle_exist()
+    os.symlink(path, target)
 
-        if not os.path.exists(os.path.dirname(target)):
-            os.makedirs(os.path.dirname(target))
-
-        try:
-            os.symlink(path, target)
-        except FileExistsError:
-            handle_exist()
-
-    link(1)
 
 
 def check_ignore(path : str):
@@ -78,8 +63,8 @@ def check_ignore(path : str):
     return True
 
 
-def walk(path: str, max_depth: int):
-    # A set contains which paths we should ignore
+def walk(path: str, max_depth: int, force: bool):
+    # A set of paths that we should ignore
     skip = {'.git'}
 
     # recursive DFS walk
@@ -92,7 +77,7 @@ def walk(path: str, max_depth: int):
         for item in os.listdir(path):
             full_path = os.path.join(path, item)
             if isfile(full_path):
-                make_link(item, full_path)
+                make_link(item, full_path, force)
             elif isdir(full_path) \
                     and full_path not in skip \
                     and check_ignore(full_path):
@@ -108,9 +93,7 @@ def main():
     parser.add_argument('-w', '--walk', default=os.path.dirname(__file__))
     parser.add_argument('-d', '--depth', default=20)
     args = parser.parse_args()
-    global force_generate
-    force_generate = args.force
-    walk(args.walk, args.depth)
+    walk(args.walk, args.depth, args.force)
 
 
 if __name__ == '__main__':
