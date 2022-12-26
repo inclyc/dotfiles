@@ -25,6 +25,7 @@ The following table lists the mapping rules for files managed by this script.
 | :-----:   | :--:|
 | zsh       | ${ZDOTDIR:-"$HOME"}/%s|
 | .tmux.conf | $HOME/.config/tmux/tmux.conf |
+| nvim | $XDG_CONFIG_HOME/nvim |
 
 </div>
 

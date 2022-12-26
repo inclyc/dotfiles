@@ -5,14 +5,23 @@ import os
 from argparse import ArgumentParser
 from typing import Optional
 
-def findtarget(root: str, name: str) -> Optional[str]:
+
+def findtarget(root: str, name: str, isfile: bool) -> Optional[str]:
+    HOME = os.getenv("HOME", "~")
+    XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME", f"{HOME}/.local/share")
+    ZDOTDIR = os.getenv("ZDOTDIR", HOME)
     if name.endswith('.tmux.conf'):
         # Hardcoded ~/.config/tmux, $XDG_CONFIG_HOME does not work.
         # https://wiki.archlinux.org/title/tmux
-        return "{}/.config/tmux/tmux.conf".format(os.getenv("HOME"))
+        return f"{HOME}/.config/tmux/tmux.conf"
     if name in {".zshrc", ".zprofile", ".p10k.zsh"}:
         # ${ZDOTDIR:-"$HOME"}
-        return "{}/{}".format(os.getenv("ZDOTDIR", os.getenv("HOME")), name)
+        return f"{ZDOTDIR}/{name}"
+    if root.find("nvim") != -1:
+        _, _, suffix = root.partition("nvim")
+        if isfile:
+            return f"{XDG_CONFIG_HOME}/nvim/{suffix}/{name}"
+
     return None
 
 
@@ -42,17 +51,17 @@ def main():
     parser.add_argument('-d', '--depth', default=20)
     args = parser.parse_args()
 
-    def handlepath(root: str, name: str):
+    def handlepath(root: str, name: str, isfile: bool):
         fullpath = os.path.join(root, name)
-        target = findtarget(root, name)
+        target = findtarget(root, name, isfile)
         if target is not None:
             makelink(target, fullpath, args.force)
 
     for root, dirs, files in os.walk(args.walk, topdown=True):
         for name in files:
-            handlepath(root, name)
+            handlepath(root, name, isfile=True)
         for name in dirs:
-            handlepath(root, name)
+            handlepath(root, name, isfile=False)
 
 if __name__ == '__main__':
     main()
