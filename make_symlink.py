@@ -86,7 +86,7 @@ def walk(path: str, max_depth: int):
     def vis_walk(path, depth):
         if depth > max_depth:
             logging.error(
-                f"Walk depth limit exceeded! current path: {path}")
+                f"Walk depth limit exceeded! current path: {path}.")
             return
         skip.add(path)
         for item in os.listdir(path):
