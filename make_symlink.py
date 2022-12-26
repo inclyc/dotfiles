@@ -33,26 +33,26 @@ force_generate = False
 def make_link(name: str, path: str):
     _target = find_target(name)
     if _target is None:
-        logging.info('Ignoring file: {}, name: {}'.format(path, name))
+        logging.info(f"Ignoring file: {path}, name: {name}")
         return
     target: str = _target
-    logging.info("Linking {} => {}".format(path, target))
+    logging.info(f"Linking {path} => {target}")
     path = os.path.abspath(path)
 
     def link(depth):
         if depth >= 3:
-            logging.error("Failed to link target {}".format(target))
+            logging.error(f"Failed to link target {target}")
             return
 
         def handle_exist():
             if force_generate:
                 logging.warning(
-                    "Target path {} already exists, delete it and relink".format(target))
+                    f"Target path {target} already exists, delete it and relink")
                 os.remove(target)
                 link(depth + 1)  # Try again
             else:
                 logging.warning(
-                    "Target path {} already exists, skipped, use -f to force generate".format(target))
+                    f"Target path {target} already exists, skipped, use -f to force generate")
 
         if os.path.exists(target):
             handle_exist()
@@ -72,7 +72,7 @@ def check_ignore(path):
     for p in ignore_pattern:
         if re.match(p, path) is not None:
             logging.info(
-                "Path {} was ignored by pattern {}.\n".format(path, p))
+                f"Path {path} was ignored by pattern {p}.\n")
             return False
 
     return True
@@ -86,7 +86,7 @@ def walk(path, max_depth):
     def vis_walk(path, depth):
         if depth > max_depth:
             logging.error(
-                "Walk depth limit exceeded! current path: {}".format(path))
+                f"Walk depth limit exceeded! current path: {path}")
             return
         skip.add(path)
         for item in os.listdir(path):
