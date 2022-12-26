@@ -68,7 +68,7 @@ def make_link(name: str, path: str):
     link(1)
 
 
-def check_ignore(path):
+def check_ignore(path : str):
     for p in ignore_pattern:
         if re.match(p, path) is not None:
             logging.info(
@@ -78,7 +78,7 @@ def check_ignore(path):
     return True
 
 
-def walk(path, max_depth):
+def walk(path: str, max_depth: int):
     # A set contains which paths we should ignore
     skip = {'.git'}
 
