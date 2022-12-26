@@ -23,7 +23,7 @@ The following table lists the mapping rules for files managed by this script.
 
 | File Type | Rule|
 | :-----:   | :--:|
-| zsh       | $HOME/%s|
+| zsh       | ${ZDOTDIR:-"$HOME"}/%s|
 | .tmux.conf | $HOME/.config/tmux/tmux.conf |
 
 </div>
