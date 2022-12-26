@@ -8,7 +8,7 @@ from typing import Optional
 
 def findtarget(root: str, name: str, isfile: bool) -> Optional[str]:
     HOME = os.getenv("HOME", "~")
-    XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME", f"{HOME}/.local/share")
+    XDG_CONFIG_HOME = os.getenv("XDG_CONFIG_HOME", f"{HOME}/.config")
     ZDOTDIR = os.getenv("ZDOTDIR", HOME)
     if name.endswith('.tmux.conf'):
         # Hardcoded ~/.config/tmux, $XDG_CONFIG_HOME does not work.
