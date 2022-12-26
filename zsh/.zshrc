@@ -1,5 +1,5 @@
-if [[ -r "${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/before/rc.zsh" ]]; then
-    source "${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/before/rc.zsh"
+if [[ -r "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/before/rc.zsh" ]]; then
+    source "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/before/rc.zsh"
 fi
 
 # Check whether or not we can attach to a tmux session
@@ -166,6 +166,6 @@ abbrev-alias top='htop'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-if [[ -r "${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/after/rc.zsh" ]]; then
-    source "${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/after/rc.zsh"
+if [[ -r "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/after/rc.zsh" ]]; then
+    source "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/after/rc.zsh"
 fi

@@ -1,10 +1,10 @@
-if [[ -r "${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/before/profile.zsh" ]]; then
-    source "${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/before/profile.zsh"
+if [[ -r "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/before/profile.zsh" ]]; then
+    source "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/before/profile.zsh"
 fi
 
 # User specific binraies, push it at the top
 path=("$HOME/.local/bin" $path)
 
-if [[ -r "${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/after/profile.zsh" ]]; then
-    source "${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/local/after/profile.zsh"
+if [[ -r "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/after/profile.zsh" ]]; then
+    source "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/after/profile.zsh"
 fi
