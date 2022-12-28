@@ -20,7 +20,9 @@ export npm_config_userconfig="${XDG_CONFIG_HOME:-"$HOME/.config"}/npm/config"
 export npm_config_cache="${XDG_CACHE_HOME-"$HOME/.cache"}/npm"
 export npm_config_prefix="${XDG_DATA_HOME:-"$HOME/.local/share"}/npm"
 export CARGO_HOME="${XDG_DATA_HOME:-"$HOME/.local/share"}/cargo"
-export _JAVA_OPTIONS=-Djavafx.cachedir="${XDG_CACHE_HOME-"$HOME/.cache"}/openjfx"
+export _JAVA_OPTIONS="-Djavafx.cachedir=${XDG_CACHE_HOME-"$HOME/.cache"}/openjfx"
+export _JAVA_OPTIONS="$_JAVA_OPTIONS -Djava.util.prefs.userRoot="${XDG_CONFIG_HOME:-"$HOME/.config"}"/java"
+export GRADLE_USER_HOME="${XDG_DATA_HOME:-"$HOME/.local/share"}/gradle"
 
 if [[ -r "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/after/profile.zsh" ]]; then
     source "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/after/profile.zsh"
