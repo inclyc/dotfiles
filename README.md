@@ -21,11 +21,11 @@ The following table lists the mapping rules for files managed by this script.
 
 <div align="center">
 
-| File Type | Rule|
-| :-----:   | :--:|
-| zsh       | ${ZDOTDIR:-"$HOME"}/%s|
-| .tmux.conf | $HOME/.config/tmux/tmux.conf |
-| nvim | $XDG_CONFIG_HOME/nvim |
+| File Type | Rule| Testing |
+| :-----:   | :--:| :--: | 
+| zsh       | ${ZDOTDIR:-"$HOME"}/%s| [zsh.md](https://github.com/inclyc/dotfiles/blob/main/dotlink/test/zsh.md) |
+| .tmux.conf | $HOME/.config/tmux/tmux.conf | [tmux.md](https://github.com/inclyc/dotfiles/blob/main/dotlink/test/tmux.md) |
+| nvim | $XDG_CONFIG_HOME/nvim | [nvim.md](https://github.com/inclyc/dotfiles/blob/main/dotlink/test/nvim.md) |
 
 </div>
 
