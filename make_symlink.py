@@ -14,7 +14,7 @@ def findtarget(root: str, name: str, isfile: bool) -> Optional[str]:
         # Hardcoded ~/.config/tmux, $XDG_CONFIG_HOME does not work.
         # https://wiki.archlinux.org/title/tmux
         return f"{HOME}/.config/tmux/tmux.conf"
-    if name in {".zshrc", ".zprofile", ".p10k.zsh"}:
+    if name in {".zshrc", ".zprofile", ".p10k.zsh", ".zshenv"}:
         # ${ZDOTDIR:-"$HOME"}
         return f"{ZDOTDIR}/{name}"
     if root.find("nvim") != -1:
