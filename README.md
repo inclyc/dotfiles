@@ -1,4 +1,10 @@
-# Dotfiles
+<div align="center">
+  <h1>Dotfiles</code></h1>
+
+  <p>
+    <strong>Dotfiles with tested installer</strong>
+  </p>
+</div>
 
 ## Overview
 
