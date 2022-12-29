@@ -71,7 +71,7 @@ def main():
         for name in dirs:
             handlepath(root, name, isfile=False, filemapping=filemapping)
 
-    for src, tgt in filemapping.items():
+    for src, tgt in sorted(filemapping.items()):
         print(f"{src} => {tgt}")
         src = os.path.abspath(os.path.join(args.walk, src))
         if not args.dry_run:

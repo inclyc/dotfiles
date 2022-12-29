@@ -4,9 +4,8 @@
 These files are nvim settings.
 
 ```
-CHECK: nvim/init.lua => xdg_config_home/nvim/init.lua
-CHECK-NEXT: nvim/plugin/.keep => xdg_config_home/nvim/plugin/.keep
-CHECK-NEXT: nvim/ftplugin/tex.lua => xdg_config_home/nvim/ftplugin/tex.lua
+CHECK: nvim/ftplugin/tex.lua => xdg_config_home/nvim/ftplugin/tex.lua
+CHECK-NEXT: nvim/init.lua => xdg_config_home/nvim/init.lua
 CHECK-NEXT: nvim/lua/plugins.lua => xdg_config_home/nvim/lua/plugins.lua
-CHECK-NEXT: zsh/.zshrc => ~/.zshrc
+CHECK-NEXT: nvim/plugin/.keep => xdg_config_home/nvim/plugin/.keep
 ```
