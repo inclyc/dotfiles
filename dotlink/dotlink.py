@@ -3,7 +3,7 @@
 import logging
 import os
 from argparse import ArgumentParser
-from typing import Optional
+from typing import Optional, Tuple, Dict
 
 
 def findtarget(root: str, name: str, isfile: bool) -> Optional[str]:
@@ -17,15 +17,14 @@ def findtarget(root: str, name: str, isfile: bool) -> Optional[str]:
     if name in {".zshrc", ".zprofile", ".p10k.zsh", ".zshenv"}:
         # ${ZDOTDIR:-"$HOME"}
         return f"{ZDOTDIR}/{name}"
-    if root.find("nvim") != -1:
-        _, _, suffix = root.partition("nvim")
+    if root.startswith("nvim"):
         if isfile:
-            return f"{XDG_CONFIG_HOME}/nvim/{suffix}/{name}"
+            return f"{XDG_CONFIG_HOME}/{root}/{name}"
 
     return None
 
 
-def makelink(target: str, path: str, force):
+def makelink(path: str, target: str, force):
     logging.info(f"Linking {path} => {target}")
     path = os.path.abspath(path)
 
@@ -49,19 +48,34 @@ def main():
     parser.add_argument('-f', '--force', action='store_true', default=False)
     parser.add_argument('-w', '--walk', default='.')
     parser.add_argument('-d', '--depth', default=20)
+    parser.add_argument('-n', '--dry-run', action='store_true', default=False)
+    parser.add_argument("--verify", action='store_true', default=False)
     args = parser.parse_args()
 
-    def handlepath(root: str, name: str, isfile: bool):
-        fullpath = os.path.join(root, name)
+    def handlepath(root: str, name: str, isfile: bool, filemapping: Dict[str, str]) -> Optional[Tuple[str, str]]:
         target = findtarget(root, name, isfile)
-        if target is not None:
-            makelink(target, fullpath, args.force)
+        if target:
+            filemapping[os.path.join(root, name)] = target
+
+    filemapping = {}
 
     for root, dirs, files in os.walk(args.walk, topdown=True):
+        root: str
+
+        # Remove "walk" prefix.
+        root = root.removeprefix(args.walk)
+        root = root.removeprefix("/")
+
         for name in files:
-            handlepath(root, name, isfile=True)
+            handlepath(root, name, isfile=True, filemapping=filemapping)
         for name in dirs:
-            handlepath(root, name, isfile=False)
+            handlepath(root, name, isfile=False, filemapping=filemapping)
+
+    for src, tgt in filemapping.items():
+        print(f"{src} => {tgt}")
+        src = os.path.abspath(os.path.join(args.walk, src))
+        if not args.dry_run:
+            makelink(src, tgt, args.force)
 
 if __name__ == '__main__':
     main()

@@ -4,7 +4,7 @@
 
 This repositry contains my dotfiles in a linux desktop. Managed by a
 little script --
-[make_symlink.py](https://github.com/inclyc/dotfiles/blob/master/make_symlink.py).
+[dotlink.py](https://github.com/inclyc/dotfiles/blob/master/dotlink/dotlink.py).
 
 ## Features
 
@@ -28,6 +28,20 @@ The following table lists the mapping rules for files managed by this script.
 | nvim | $XDG_CONFIG_HOME/nvim |
 
 </div>
+
+## Testing
+
+Good software should have best test coverage. This repository uses LLVM "lit" testing framework, you can install it from pypi via:
+
+```
+pip install lit
+```
+
+The dotlink package could be tested by:
+
+```
+lit -vv test
+```
 
 ## Note
 
