@@ -31,16 +31,20 @@ def makelink(path: str, target: str, force):
     if not os.path.exists(os.path.dirname(target)):
         os.makedirs(os.path.dirname(target))
 
-    if os.path.exists(target):
+    try:
+        # Pointing to src named dst.
+        os.symlink(path, target)
+    except FileExistsError:
         if force:
             logging.warning(f"Path {target} already exists, delete it.")
             os.remove(target)
+            # Link again!
+            os.symlink(path, target)
         else:
             logging.warning(f"Path {target} already exists, skipped.")
             logging.warning("use -f to force generate")
             return
 
-    os.symlink(path, target)
 
 def main():
     logging.basicConfig(level=logging.INFO)
