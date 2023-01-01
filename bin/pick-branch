@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+
+# Assume that you have branches locally for submitting patches, with only one commit ahead.
+
+# E.g
+# * 0bc8d76f8055092e59ecbb33357f8f0012903024 (jump-threading-58812) [JT] check xor operand is exactly the same in processBranchOnXOR
+# | * 5a5c481943f7d76e2f7dd1e06d45a88f99b8f946 (vp-expand-nostdv) [RISCV][VP] expand vp instrinscs if no +v feature
+# |/
+# | * 65106e34c94723dbca44e1b6ebf8a1cc77744666 (vp-expand-redmul) [RISCV][VP] Support vp.reduce.mul by ExpandVectorPredication
+# |/
+# | * 9ba9d42ab532100ff68c9aee401bb3e7ad15420e (llvm_unreachable) [clang] replace `assert(0)` with `llvm_unreachable` NFC
+# |/
+# | * 46310c68053636c9c5a7fa659afa699631745f00 (offsetof) [C2x] reject type definitions in offsetof
+# |/
+# | * 74616a2fabc9fd7b9f62ff489f34bdaa54a45c3f (bconstantp) 1123
+# |/
+# | * 62fec084d67af5b3d55b09271a5b9aab604698f5 (origin/main, origin/HEAD) [mlir] Add LLDB visualizers for MLIR constructs
+# | * 18546ff8dd45a81e72c0a2ed0561b5aec8c15ca3 [mlir:Bytecode] Add shared_ptr<SourceMgr> overloads to allow safe mmap of data
+# |/
+# * 9cbd2959c156f50c1e44dabcf3d7de3461c5836a (HEAD -> main) [BOLT] Fix broken unittests
+
+
+# This script cherry-pick all commits from branches (given in sys.args) to main.
+# Usage example: ./pick_branch 'bconstantp' 'offsetof' 'llvm_unreachable' 'vp-expand-nostdv' 'vp-expand-redmul' 'jump-threading-58812'
+
+from contextlib import contextmanager
+import subprocess
+import sys
+
+
+@contextmanager
+def tempbranch(bname: str):
+    currentbranch = subprocess.run(
+        ["git", "branch", "--show-current"], check=True, encoding='utf-8', capture_output=True).stdout.strip()
+    try:
+        subprocess.run(["git", "checkout", "-b", bname])
+        yield
+    finally:
+        subprocess.run(["git", "checkout", currentbranch])
+        subprocess.run(["git", "branch", "-D", bname])
+
+
+def parserev(bname: str) -> str:
+    return subprocess.run(["git", "rev-parse", bname],
+                          check=True, encoding='utf-8', capture_output=True).stdout.strip()
+
+
+def pickbranch(bname: str):
+    with tempbranch("temp"):
+        revid = parserev(bname)
+
+        print(f"Revision ID {revid}")
+
+        try:
+            subprocess.run(["git", "cherry-pick", revid], check=True)
+        except subprocess.CalledProcessError:
+            print(f"Cannot cherry-pick revision {revid} on branch {bname}")
+            subprocess.run(["git", "cherry-pick", "--abort"])
+            return False
+
+        subprocess.run(["git", "branch", "-D", bname], check=True)
+        subprocess.run(["git", "checkout", "-b", bname], check=True)
+        return True
+
+
+def main():
+    for bname in sys.argv[1:]:
+        pickbranch(bname)
+
+
+if __name__ == '__main__':
+    main()

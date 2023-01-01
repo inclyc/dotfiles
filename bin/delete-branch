@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+
+# Delete a branch and its traking remote branch
+# Usage: ./delete_branch.py %{bname}
+
+import sys
+import subprocess
+
+def callgitdelete(bname: str, remote: bool):
+    if remote:
+        subprocess.run(["git", "branch", "-r", "-D", bname])
+    else:
+        subprocess.run(["git", "branch", "-D", bname])
+
+def delbranch(bname: str):
+    try:
+        upstream = subprocess.run(["git", "rev-parse", "--abbrev-ref", f"{bname}@{{upstream}}"],
+            check=True,
+            encoding='utf-8',
+            capture_output=True).stdout.strip()
+        print(f"Upstream: {upstream}")
+        callgitdelete(upstream, True)
+    except subprocess.CalledProcessError:
+        print(f"Cannot find remote tracking ref name")
+
+    callgitdelete(bname, False)
+
+def main():
+    for bname in sys.argv[1:]:
+        delbranch(bname)
+
+
+if __name__ == '__main__':
+    main()
