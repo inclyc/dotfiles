@@ -1,0 +1,34 @@
+[user]
+	signingkey = 296C3FEFEA88ABC5!
+    name = Yingchi Long
+    email = i@lyc.dev
+[core]
+    excludesFile = /home/lyc/.config/git/ignore
+[commit]
+	gpgsign = 1
+[init]
+	defaultBranch = main
+[pull]
+	rebase = 1
+	ff = only
+[format]
+    signoff = true
+[push]
+	gpgsign = 0
+[alias]
+	check-whitespace = git diff-tree --check $(git hash-object -t tree /dev/null) HEAD
+
+[sendemail]
+	smtpuser = i@lyc.dev
+	smtpserver = smtppro.zoho.com.cn
+	smtpserverport = 465
+	smtpencryption = ssl
+	confirm = always
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

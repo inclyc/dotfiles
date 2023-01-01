@@ -20,6 +20,9 @@ def findtarget(root: str, name: str, isfile: bool) -> Optional[str]:
     if root.startswith("nvim"):
         if isfile:
             return f"{XDG_CONFIG_HOME}/{root}/{name}"
+    if root.startswith("git"):
+        if isfile:
+            return f"{XDG_CONFIG_HOME}/{root}/{name}"
 
     return None
 

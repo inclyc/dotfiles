@@ -32,6 +32,7 @@ The following table lists the mapping rules for files managed by this script.
 | zsh       | ${ZDOTDIR:-"$HOME"}/%s| [zsh.md](https://github.com/inclyc/dotfiles/blob/main/dotlink/test/zsh.md) |
 | .tmux.conf | $HOME/.config/tmux/tmux.conf | [tmux.md](https://github.com/inclyc/dotfiles/blob/main/dotlink/test/tmux.md) |
 | nvim | $XDG_CONFIG_HOME/nvim | [nvim.md](https://github.com/inclyc/dotfiles/blob/main/dotlink/test/nvim.md) |
+| git | $XDG_CONFIG_HOME/git | [git.md](https://github.com/inclyc/dotfiles/blob/main/dotlink/test/git.md) |
 
 </div>
 
