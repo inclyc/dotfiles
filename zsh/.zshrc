@@ -128,8 +128,13 @@ bindkey -M viins 'jk' vi-cmd-mode
 
 
 # Package manager
+local antigen_script="${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/antigen.zsh"
+if [[ ! -r $antigen_script ]]; then
+	curl -L git.io/antigen -o $antigen_script > /dev/null 2>&1
+fi
+
 export ADOTDIR=${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/antigen
-source ${XDG_DATA_HOME:-"$HOME/.local/share"}/zsh/antigen.zsh
+source $antigen_script
 
 # Official plugins
 antigen bundle zsh-users/zsh-syntax-highlighting
