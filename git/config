@@ -2,8 +2,6 @@
 	signingkey = 296C3FEFEA88ABC5!
     name = Yingchi Long
     email = i@lyc.dev
-[core]
-    excludesFile = /home/lyc/.config/git/ignore
 [commit]
 	gpgsign = 1
 [init]
