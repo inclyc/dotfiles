@@ -169,7 +169,7 @@ abbrev-alias vi='nvim'
 abbrev-alias top='htop'
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ${ZDOTDIR:-"~"}/.p10k.zsh ]] || source ${ZDOTDIR:-"~"}/.p10k.zsh
+[[ ! -f ${ZDOTDIR:-"$HOME"}/.p10k.zsh ]] || source ${ZDOTDIR:-"$HOME"}/.p10k.zsh
 
 if [[ -r "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/after/rc.zsh" ]]; then
     source "${XDG_CONFIG_HOME:-"$HOME/.config"}/zsh/after/rc.zsh"
